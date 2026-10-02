@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cozy Pod — a quiet space to study, rest and recharge.">
+<title>Cozy Pod – Study, Rest & Recharge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f6f4;--surface:#fff;--ink:#0c1a5c;--muted:#59617d;
+  --line:#d6dfdb;--mint:#bcdacf;--night:#0c1a5c;--white:#f4f5fa;
+  --shadow:0 18px 50px rgba(12,26,92,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Bricolage Grotesque",system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1080px;margin:auto;padding:0 22px}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative;z-index:5}
+.logo{text-decoration:none;font-weight:800;font-size:1.25rem;display:flex;align-items:center;gap:10px}
+.logo-mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--mint);font-size:20px}
+nav{display:flex;gap:24px}
+nav a{text-decoration:none;color:var(--muted);font-weight:600}
+nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:55px 0 85px}
+.eyebrow{font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:#56756a;margin-bottom:12px}
+h1{font-size:clamp(3rem,7vw,5.4rem);line-height:.95;letter-spacing:-.045em;margin:0 0 20px}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:540px;margin:0 0 28px}
+.btn{display:inline-block;border:0;border-radius:999px;padding:13px 21px;background:var(--mint);color:var(--ink);font:inherit;font-weight:800;text-decoration:none;cursor:pointer}
+.btn.dark{background:var(--night);color:var(--white)}
+.btn.ghost{background:transparent;border:2px solid var(--line);margin-left:8px}
+.visual{position:relative;min-height:470px;display:grid;place-items:center}
+.pod{width:min(330px,78vw);height:440px;background:var(--night);border-radius:170px 170px 32px 32px;position:relative;overflow:hidden;box-shadow:0 0 0 10px var(--surface),0 0 0 12px var(--line),var(--shadow)}
+.glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 37%,rgba(242,179,94,.85),rgba(242,179,94,.13) 54%,transparent 75%);animation:breathe 6s ease-in-out infinite}
+.lamp{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:var(--mint);box-shadow:0 0 50px 18px rgba(242,179,94,.6)}
+.seat{position:absolute;bottom:0;left:11%;right:11%;height:30%;background:#2d3160;border-radius:40px 40px 0 0}
+.seat:after{content:"";position:absolute;left:14%;right:14%;top:-16px;height:34px;background:#454a8a;border-radius:20px}
+.float{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px 15px;box-shadow:var(--shadow);font-weight:700}
+.f1{top:7%;right:2%}.f2{bottom:10%;left:0}
+section{padding:70px 0}
+h2{font-size:clamp(2rem,4vw,3rem);line-height:1.05;letter-spacing:-.03em;margin:0 0 9px}
+.sub{color:var(--muted);max-width:620px;margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 8px 30px rgba(12,26,92,.04)}
+.card.feature{background:var(--night);color:var(--white);border-color:var(--night)}
+.card p{color:var(--muted);margin:8px 0 0}
+.card.feature p{color:#b9bbd8}
+.icon{font-size:1.7rem;margin-bottom:12px}
+.price{font-size:1.55rem;font-weight:800;margin-top:18px}
+.price small{font-size:.85rem;color:var(--muted);font-weight:600}
+.card.feature .price small{color:#b9bbd8}
+.booking{max-width:760px;margin:auto}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow)}
+label{font-weight:700;font-size:.93rem;display:flex;flex-direction:column;gap:6px}
+input,select{width:100%;border:2px solid var(--line);border-radius:13px;padding:12px 13px;background:var(--bg);color:var(--ink);font:inherit;min-height:48px}
+input:focus,select:focus{outline:none;border-color:var(--mint)}
+.full{grid-column:1/-1}
+.est{font-weight:800;margin:0}
+.error{color:#b7352c;font-weight:700;margin:0}
+.success{display:none;background:var(--night);color:var(--white);border-radius:24px;padding:25px;margin-top:16px}
+.success p{color:#c3c5dd}
+.cta{background:var(--night);color:var(--white);border-radius:34px;text-align:center;padding:55px 24px;margin:20px 0 70px}
+.cta p{color:#b9bbd8;max-width:520px;margin:8px auto 24px}
+footer{padding:0 0 40px;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:20px}
+@keyframes breathe{50%{opacity:.58}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.glow{animation:none}}
+@media(max-width:780px){
+  nav{gap:12px}nav a:not(:last-child){display:none}
+  .hero{grid-template-columns:1fr;padding-top:25px}
+  .visual{order:-1;min-height:390px}.pod{width:260px;height:350px}
+  .grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  form{grid-template-columns:1fr}.full{grid-column:auto}
+  .hero{padding-bottom:45px}.visual{min-height:350px}
+  .f1{right:0}.f2{left:0}
+  footer{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="#home"><span class="logo-mark">☁</span> Cozy Pod</a>
+  <nav aria-label="Main navigation">
+    <a href="#features">Features</a>
+    <a href="#rates">Rates</a>
+    <a href="#booking">Book</a>
+  </nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div>
+    <div class="eyebrow">Study • Rest • Recharge</div>
+    <h1>Your little space to focus.</h1>
+    <p>Cozy Pod is a private, comfortable space made for students and busy people who need a quiet place to study, work, rest and reset.</p>
+    <a class="btn" href="#booking">Book a Pod</a>
+    <a class="btn ghost" href="#rates">See Rates</a>
+  </div>
+  <div class="visual" aria-label="Illustration of a cozy study pod">
+    <div class="float f1">🌙 Quiet time</div>
+    <div class="pod"><div class="glow"></div><div class="lamp"></div><div class="seat"></div></div>
+    <div class="float f2">📚 Study-ready</div>
+  </div>
+</section>
+
+<section id="features">
+  <h2>Made for your kind of break.</h2>
+  <p class="sub">A simple pod experience with the things you need to stay comfortable and productive.</p>
+  <div class="grid">
+    <article class="card"><div class="icon">📚</div><h3>Study-friendly</h3><p>A focused personal space for reading, assignments and quiet work.</p></article>
+    <article class="card feature"><div class="icon">🌙</div><h3>Rest & recharge</h3><p>Take a peaceful break when you need to slow down and reset.</p></article>
+    <article class="card"><div class="icon">🔌</div><h3>Comfort essentials</h3><p>A cozy seat, lighting and power access to make your stay easier.</p></article>
+  </div>
+</section>
+
+<section id="rates">
+  <h2>Simple pod rates.</h2>
+  <p class="sub">Choose the session that fits your schedule. Prices below are sample rates for the school project.</p>
+  <div class="grid">
+    <article class="card"><h3>Quick Reset</h3><p>30-minute pod session</p><div class="price">₱49 <small>/ session</small></div></article>
+    <article class="card feature"><h3>Focus Session</h3><p>1-hour study or rest session</p><div class="price">₱79 <small>/ session</small></div></article>
+    <article class="card"><h3>Deep Focus</h3><p>2-hour extended session</p><div class="price">₱149 <small>/ session</small></div></article>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="booking">
+    <h2>Book your Cozy Pod.</h2>
+    <p class="sub">Fill out the form to create a sample reservation. No payment is taken on this demo website.</p>
+    <form id="bookingForm">
+      <label>Name<input id="name" required placeholder="Your name"></label>
+      <label>Email<input id="email" type="email" required placeholder="you@example.com"></label>
+      <label>Date<input id="date" type="date" required></label>
+      <label>Time<select id="time" required>
+        <option value="">Choose a time</option>
+        <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+        <option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option>
+        <option>4:00 PM</option><option>5:00 PM</option>
+      </select></label>
+      <label class="full">Session<select id="session" required>
+        <option value="">Choose a session</option>
+        <option value="49">Quick Reset — ₱49</option>
+        <option value="79">Focus Session — ₱79</option>
+        <option value="149">Deep Focus — ₱149</option>
+      </select></label>
+      <p class="est full" id="estimate">Estimated total: —</p>
+      <p class="error full" id="error"></p>
+      <button class="btn dark full" type="submit">Confirm Sample Booking</button>
+    </form>
+    <div class="success" id="success" aria-live="polite">
+      <h3>Booking request created! ✨</h3>
+      <p id="successText"></p>
+      <button class="btn ghost" type="button" id="reset">Make another booking</button>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>Take a moment. You deserve it.</h2>
+  <p>Whether you're finishing an assignment or simply need some quiet time, Cozy Pod gives you a small space to breathe.</p>
+  <a class="btn" href="#booking">Reserve a Pod</a>
+</div>
+</main>
+
+<footer>
+  <span>© 2026 Cozy Pod</span>
+  <span>Study, rest and recharge.</span>
+</footer>
+</div>
+
+<script>
+const form=document.getElementById('bookingForm');
+const session=document.getElementById('session');
+const estimate=document.getElementById('estimate');
+const error=document.getElementById('error');
+const success=document.getElementById('success');
+const successText=document.getElementById('successText');
+const date=document.getElementById('date');
+date.min=new Date().toISOString().split('T')[0];
+
+function updateEstimate(){
+  const price=session.value;
+  estimate.textContent='Estimated total: '+(price?'₱'+price:'—');
+}
+session.addEventListener('change',updateEstimate);
+
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  error.textContent='';
+  const chosen=new Date(date.value+'T00:00:00');
+  const today=new Date(); today.setHours(0,0,0,0);
+  if(chosen<today){error.textContent='Please choose today or a future date.';return}
+  const name=document.getElementById('name').value.trim();
+  const time=document.getElementById('time').value;
+  const price=session.value;
+  successText.textContent=`Thank you, ${name}! Your sample reservation is set for ${date.value} at ${time}. Estimated total: ₱${price}.`;
+  form.style.display='none';
+  success.style.display='block';
+});
+document.getElementById('reset').addEventListener('click',()=>{
+  form.reset();updateEstimate();success.style.display='none';form.style.display='grid';
+});
+</script>
+</body>
+</html>
